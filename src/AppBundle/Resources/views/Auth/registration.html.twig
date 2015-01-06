@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:Auth:registration{% endblock %}
+
+{% block body %}
+    <form action="{{ path('registration') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_rest(form) }}
+        <input type="submit" value="Register"/>
+        {{ form_end(form) }}
+    </form>
+    <h1>Welcome to the Auth:registration page</h1>
+{% endblock %}
