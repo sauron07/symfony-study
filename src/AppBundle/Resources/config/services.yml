@@ -4,3 +4,7 @@ services:
         arguments: [@router]
         tags:
             - { name: kernel.event_subscriber }
+    app.user_registration.form.type:
+        class: AppBundle\Form\UsersType
+        tags:
+            - { name: form.type, alias: app_user_registration }

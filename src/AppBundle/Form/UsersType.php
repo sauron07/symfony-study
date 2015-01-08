@@ -16,7 +16,6 @@ class UsersType extends AbstractType
     {
         $builder
             ->add('login')
-            ->add('password')
         ;
     }
     
@@ -30,11 +29,17 @@ class UsersType extends AbstractType
         ));
     }
 
+    public function getParent ()
+    {
+        return 'fos_user_registration';
+    }
+
+
     /**
      * @return string
      */
     public function getName()
     {
-        return 'appbundle_users';
+        return 'app_user_registration';
     }
 }

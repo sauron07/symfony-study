@@ -3,41 +3,54 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Users
  */
-class Users
+class Users extends BaseUser
 {
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
+     * User Login
+     *
      * @var string
+     *
+     * @Assert\NotBlank(groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *      min="3",
+     *      max="255",
+     *      minMessage="The login is too short",
+     *      maxMessage="The login is too long",
+     *      groups={"Registration", "Profile"}
+     * )
      */
     private $login;
 
-    /**
-     * @var string
-     */
-    private $password;
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
-     * @var string
+     * @return int
      */
-    private $salt;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
+    public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId ($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -56,64 +69,10 @@ class Users
     /**
      * Get login
      *
-     * @return string 
+     * @return string
      */
     public function getLogin()
     {
         return $this->login;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return Users
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set salt
-     *
-     * @param string $salt
-     * @return Users
-     */
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-
-    /**
-     * Get salt
-     *
-     * @return string 
-     */
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function setPasswordSalt()
-    {
-        // Add your code here
     }
 }

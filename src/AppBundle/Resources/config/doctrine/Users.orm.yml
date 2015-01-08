@@ -8,4 +8,8 @@ AppBundle\Entity\Users:
             id: true
             generator:
                 strategy: AUTO
+    fields:
+        login:
+            type: string
+            length: 255
     lifecycleCallbacks: {  }
