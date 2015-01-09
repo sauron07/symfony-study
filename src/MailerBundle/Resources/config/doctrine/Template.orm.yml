@@ -1,0 +1,22 @@
+MailerBundle\Entity\Template:
+    type: entity
+    table: null
+    repositoryClass: MailerBundle\Entity\TemplateRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        alias:
+            type: string
+            length: 255
+        subject:
+            type: string
+            length: 255
+        body:
+            type: text
+        active:
+            type: integer
+    lifecycleCallbacks: {  }

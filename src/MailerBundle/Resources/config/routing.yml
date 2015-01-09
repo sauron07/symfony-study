@@ -1,0 +1,7 @@
+mailer_template:
+    resource: "@MailerBundle/Resources/config/routing/template.yml"
+    prefix:   /template
+
+mailer_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MailerBundle:Default:index }

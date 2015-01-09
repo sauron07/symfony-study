@@ -1,0 +1,30 @@
+template:
+    path:     /
+    defaults: { _controller: "MailerBundle:Template:index" }
+
+template_show:
+    path:     /{id}/show
+    defaults: { _controller: "MailerBundle:Template:show" }
+
+template_new:
+    path:     /new
+    defaults: { _controller: "MailerBundle:Template:new" }
+
+template_create:
+    path:     /create
+    defaults: { _controller: "MailerBundle:Template:create" }
+    requirements: { _method: post }
+
+template_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MailerBundle:Template:edit" }
+
+template_update:
+    path:     /{id}/update
+    defaults: { _controller: "MailerBundle:Template:update" }
+    requirements: { _method: post|put }
+
+template_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MailerBundle:Template:delete" }
+    requirements: { _method: post|delete }
