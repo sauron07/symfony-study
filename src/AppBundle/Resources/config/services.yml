@@ -1,9 +1,15 @@
+parameters:
+    app.user_login.redirect.class: AppBundle\EventListener\LoginListener
+#    ccdn_user_security.component.authentication.handler.logout_success_handler.class: CCDNUser\SecurityBundle\Component\Authentication\Handler\LogoutSuccessHandler
+
 services:
-    app_passoword_resetting:
-        class: AppBundle\EventListener\PasswordResettingListener
+    app.user_login.redirect:
+        class: %app.user_login.redirect.class%
+        public: false
         arguments: [@router]
         tags:
-            - { name: kernel.event_subscriber }
+            - { name: 'monolog.logger', channel: 'security' }
+
     app.user_registration.form.type:
         class: AppBundle\Form\UsersType
         tags:

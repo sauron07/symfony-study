@@ -21,7 +21,6 @@ class Users extends BaseUser
      *
      * @var string
      *
-     * @Assert\NotBlank(groups={"Registration", "Profile"})
      * @Assert\Length(
      *      min="3",
      *      max="255",

@@ -76,6 +76,11 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: AppBundle\Entity\Users
+    from_email:
+        address: noreplay@acmedemo.com
+        sender_name: Acme Demo Bundler
     registration:
+        confirmation:
+            enabled: true
         form:
             type: app_user_registration
