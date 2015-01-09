@@ -12,16 +12,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $message = \Swift_Message::newInstance()
-            ->setSubject('test')
-            ->setFrom('test@mail.com')
-            ->setTo('matyeyev.sasha@gmail.com')
-            ->setBody(
-                    'test letter'
-            );
-
-        $this->container->get('mailer')->send($message);
-
         return $this->render('@FOSUser/layout.html.twig');
     }
 }
