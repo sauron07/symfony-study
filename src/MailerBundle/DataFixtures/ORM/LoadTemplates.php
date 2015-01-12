@@ -18,12 +18,19 @@ class LoadTemplates extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load (ObjectManager $manager)
     {
+        $activation = new Template();
+        $activation->setAlias('activation')
+            ->setSubject('Activation letter')
+            ->setBody('Activation letter from some site')
+            ->setDeleted(0);
+        $manager->persist($activation);
+
         for($i = 0; $i < 50; $i++){
             $template = new Template();
             $template->setAlias(uniqid('alias-'))
-                ->setSubject('Activation letter')
-                ->setBody('This is activation letter please follow the activation link')
-                ->setDeleted(1);
+                ->setSubject('Mailing')
+                ->setBody('This is common mailing letter, please do not do nothing!')
+                ->setDeleted(0);
             $manager->persist($template);
         }
 

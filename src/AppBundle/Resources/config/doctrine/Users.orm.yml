@@ -8,15 +8,4 @@ AppBundle\Entity\Users:
             id: true
             generator:
                 strategy: AUTO
-    manyToMany:
-            groups:
-                targetEntity: AppBundle\Entity\Groups
-                joinTable:
-                    name: User_Group
-                    joinColumns:
-                        user_id:
-                            referencedColumnName: id
-                    inverseJoinColumns:
-                        group_id:
-                            referencedColumnName: id
     lifecycleCallbacks: {  }

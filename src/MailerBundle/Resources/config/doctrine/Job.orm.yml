@@ -1,0 +1,30 @@
+MailerBundle\Entity\Job:
+    type: entity
+    table: null
+    repositoryClass: MailerBundle\Repository\JobRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        startedAt:
+            type: datetime
+            column: started_at
+        endedAt:
+            type: datetime
+            column: ended_at
+            nullable: true
+        status:
+            type: boolean
+    oneToOne:
+        template:
+            targetEntity: MailerBundle\Entity\Template
+            joinColumn:
+                name: template_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

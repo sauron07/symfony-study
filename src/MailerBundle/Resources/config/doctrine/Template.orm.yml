@@ -1,7 +1,7 @@
 MailerBundle\Entity\Template:
     type: entity
     table: null
-    repositoryClass: MailerBundle\Entity\TemplateRepository
+    repositoryClass: MailerBundle\Repository\TemplateRepository
     id:
         id:
             type: integer

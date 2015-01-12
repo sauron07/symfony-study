@@ -1,6 +1,6 @@
 <?php
 
-namespace MailerBundle\Entity;
+namespace MailerBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -12,18 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class TemplateRepository extends EntityRepository
 {
-    public function getActiveTemplates($templateAlias = null, $max = null, $offset = null)
+    public function getActiveTemplates($templateAlias = null)
     {
         $qb = $this->createQueryBuilder('t')
             ->where('t.deleted = :deleted')
-            ->setParameter('deleted', 1);
-
-        if(!empty($max)){
-            $qb->setMaxResults($max);
-        }
-        if(!empty($offset)){
-            $qb->setFirstResult($offset);
-        }
+            ->setParameter('deleted', 0);
 
         if(!empty($templateAlias)){
             $qb->andWhere('t.alias = :alias')
@@ -31,8 +24,6 @@ class TemplateRepository extends EntityRepository
         }
 
         return $qb->getQuery();
-        return $query->getResult();
-
     }
 
 }

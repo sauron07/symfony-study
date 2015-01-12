@@ -2,6 +2,9 @@ mailer_template:
     resource: "@MailerBundle/Resources/config/routing/template.yml"
     prefix:   /template
 
-mailer_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: MailerBundle:Default:index }
+job_index_page:
+    path:     /jobs/{jobs_type}/{page}
+    defaults: { _controller: MailerBundle:Job:index,  jobs_type: actual, page: 1 }
+    requirements:
+        page: \d+
+        jobs_type: actual|ended
