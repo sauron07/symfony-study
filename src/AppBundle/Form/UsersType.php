@@ -9,17 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class UsersType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('login')
-        ;
-    }
-    
-    /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)

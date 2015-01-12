@@ -1,47 +1,56 @@
-{% extends '::base.html.twig' %}
+{% extends "FOSUserBundle::layout.html.twig" %}
 
-{% block body -%}
+{% block fos_user_content -%}
     <h1>Template list</h1>
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Alias</th>
-                <th>Subject</th>
-                <th>Body</th>
-                <th>Active</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="count">
+        {{ entities.getTotalItemCount }}
+    </div>
+    <table border="1px">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(entities, 'Id', 't.id') }}</th>
+            <th>{{ knp_pagination_sortable(entities, 'Alias', 't.alias') }}</th>
+            <th>{{ knp_pagination_sortable(entities, 'Subject', 't.subject') }}</th>
+            <th>Body</th>
+            <th>Actions</th>
+        </tr>
+
+        {# table body #}
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('template_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a href="{{ path('template_show', { 'alias': entity.alias }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.alias }}</td>
                 <td>{{ entity.subject }}</td>
                 <td>{{ entity.body }}</td>
-                <td>{{ entity.active }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('template_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('template_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <ul>
+                        <li>
+                            <a href="{{ path('template_show', { 'alias': entity.alias }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('template_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}
-        </tbody>
     </table>
 
-        <ul>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(entities) }}
+    </div>
+
+    {% endblock %}
+{% block right_sidebar %}
+
+    <ul>
         <li>
             <a href="{{ path('template_new') }}">
                 Create a new entry
             </a>
         </li>
     </ul>
-    {% endblock %}
+
+{% endblock %}

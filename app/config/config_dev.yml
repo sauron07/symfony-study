@@ -45,5 +45,5 @@ assetic:
     use_controller: true
 
 swiftmailer:
-    disable_delivery: false
+    disable_delivery: true
     delivery_address: matyeyev.sasha@gmail.com

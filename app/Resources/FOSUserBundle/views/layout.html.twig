@@ -5,6 +5,9 @@
 </head>
 <body>
 <div style="width: 900px; margin: 0 auto;">
+    <div style="float: left">
+        <a href="{{ path('template') }}">Templates</a>
+    </div>
     <div style="text-align: right">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <a href="{{ path('fos_user_profile_show')}}">
@@ -29,6 +32,10 @@
     <div>
         {% block fos_user_content %}
         {% endblock fos_user_content %}
+    </div>
+    <div>
+        {% block right_sidebar %}
+        {% endblock %}
     </div>
 
 </div>

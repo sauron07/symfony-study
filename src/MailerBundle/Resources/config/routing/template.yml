@@ -1,9 +1,11 @@
 template:
-    path:     /
-    defaults: { _controller: "MailerBundle:Template:index" }
+    path:     /{page}
+    defaults: { _controller: "MailerBundle:Template:index", page: 1 }
+    requirements:
+        page: \d+
 
 template_show:
-    path:     /{id}/show
+    path:     /{alias}/show
     defaults: { _controller: "MailerBundle:Template:show" }
 
 template_new:

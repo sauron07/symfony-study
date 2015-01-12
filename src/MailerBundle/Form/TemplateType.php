@@ -18,7 +18,6 @@ class TemplateType extends AbstractType
             ->add('alias')
             ->add('subject')
             ->add('body')
-            ->add('active')
         ;
     }
     

@@ -12,11 +12,12 @@ MailerBundle\Entity\Template:
         alias:
             type: string
             length: 255
+            unique: true
         subject:
             type: string
             length: 255
         body:
             type: text
-        active:
-            type: integer
+        deleted:
+            type: boolean
     lifecycleCallbacks: {  }

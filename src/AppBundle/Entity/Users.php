@@ -17,19 +17,9 @@ class Users extends BaseUser
     protected $id;
 
     /**
-     * User Login
-     *
-     * @var string
-     *
-     * @Assert\Length(
-     *      min="3",
-     *      max="255",
-     *      minMessage="The login is too short",
-     *      maxMessage="The login is too long",
-     *      groups={"Registration", "Profile"}
-     * )
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $login;
+    protected $groups;
 
     public function __construct()
     {
@@ -50,28 +40,5 @@ class Users extends BaseUser
     public function setId ($id)
     {
         $this->id = $id;
-    }
-
-    /**
-     * Set login
-     *
-     * @param string $login
-     * @return Users
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-
-        return $this;
-    }
-
-    /**
-     * Get login
-     *
-     * @return string
-     */
-    public function getLogin()
-    {
-        return $this->login;
     }
 }

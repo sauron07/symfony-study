@@ -12,4 +12,27 @@ use Doctrine\ORM\EntityRepository;
  */
 class TemplateRepository extends EntityRepository
 {
+    public function getActiveTemplates($templateAlias = null, $max = null, $offset = null)
+    {
+        $qb = $this->createQueryBuilder('t')
+            ->where('t.deleted = :deleted')
+            ->setParameter('deleted', 1);
+
+        if(!empty($max)){
+            $qb->setMaxResults($max);
+        }
+        if(!empty($offset)){
+            $qb->setFirstResult($offset);
+        }
+
+        if(!empty($templateAlias)){
+            $qb->andWhere('t.alias = :alias')
+                ->setParameter('alias', $templateAlias);
+        }
+
+        return $qb->getQuery();
+        return $query->getResult();
+
+    }
+
 }

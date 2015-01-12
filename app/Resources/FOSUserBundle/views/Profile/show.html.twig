@@ -1,6 +1,8 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
-{% include "FOSUserBundle:Profile:show_content.html.twig" %}
-{% include "FOSUserBundle:Profile:right_menu.html.twig" %}
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 {% endblock fos_user_content %}
+{% block right_sidebar %}
+    {% include "FOSUserBundle:Profile:right_menu.html.twig" %}
+{% endblock %}

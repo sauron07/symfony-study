@@ -3,6 +3,7 @@
 namespace MailerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Template
@@ -30,10 +31,9 @@ class Template
     private $body;
 
     /**
-     * @var integer
+     * @var boolean
      */
-    private $active;
-
+    private $deleted = 0;
 
     /**
      * Get id
@@ -115,25 +115,25 @@ class Template
     }
 
     /**
-     * Set active
+     * Set deleted
      *
-     * @param integer $active
+     * @param boolean $deleted
      * @return Template
      */
-    public function setActive($active)
+    public function setDeleted($deleted)
     {
-        $this->active = $active;
+        $this->deleted = $deleted;
 
         return $this;
     }
 
     /**
-     * Get active
+     * Get deleted
      *
-     * @return integer 
+     * @return boolean 
      */
-    public function getActive()
+    public function getDeleted()
     {
-        return $this->active;
+        return $this->deleted;
     }
 }

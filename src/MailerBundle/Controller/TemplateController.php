@@ -19,11 +19,14 @@ class TemplateController extends Controller
      * Lists all Template entities.
      *
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MailerBundle:Template')->findAll();
+        $entities = $em->getRepository('MailerBundle:Template')->getActiveTemplates();
+
+        $pagination = $this->container->get('knp_paginator');
+        $entities = $pagination->paginate($entities, $page, $this->container->getParameter('max_templates_on_page'));
 
         return $this->render('MailerBundle:Template:index.html.twig', array(
             'entities' => $entities,
@@ -44,7 +47,7 @@ class TemplateController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('template_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('template_show', array('alias' => $entity->getId())));
         }
 
         return $this->render('MailerBundle:Template:new.html.twig', array(
@@ -91,17 +94,18 @@ class TemplateController extends Controller
      * Finds and displays a Template entity.
      *
      */
-    public function showAction($id)
+    public function showAction($alias)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('MailerBundle:Template')->find($id);
+        /** @var \MailerBundle\Entity\Template $entity */
+        $entity = $em->getRepository('MailerBundle:Template')->findOneBy(['alias' => $alias]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($entity->getId());
 
         return $this->render('MailerBundle:Template:show.html.twig', array(
             'entity'      => $entity,

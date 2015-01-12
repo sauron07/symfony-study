@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends "FOSUserBundle::layout.html.twig" %}
 
-{% block body -%}
+{% block fos_user_content -%}
     <h1>Template</h1>
 
     <table class="record_properties">
@@ -20,10 +20,6 @@
             <tr>
                 <th>Body</th>
                 <td>{{ entity.body }}</td>
-            </tr>
-            <tr>
-                <th>Active</th>
-                <td>{{ entity.active }}</td>
             </tr>
         </tbody>
     </table>
