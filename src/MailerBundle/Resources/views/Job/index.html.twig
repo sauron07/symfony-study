@@ -1,8 +1,10 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
+{% block right_sidebar %}
+    <a href="{{ path('job_new_page') }}">Create Job</a>
+{% endblock %}
 {% block fos_user_content -%}
-    <h1>Template list</h1>
-
+    <h1>Jobs list</h1>
+    <a href="{{ path('job_index_page', { 'jobs_type': 'featured' }) }}">Featured jobs</a>
     <a href="{{ path('job_index_page', { 'jobs_type': 'actual' }) }}">Active jobs</a>
     <a href="{{ path('job_index_page', { 'jobs_type': 'ended' }) }}">Ended jobs</a>
     <table border="1px">
@@ -10,9 +12,10 @@
             {# sorting of properties based on query components #}
             <th>{{ knp_pagination_sortable(jobs, 'Id', 'j.id') }}</th>
             <th>{{ knp_pagination_sortable(jobs, 'Name', 'j.name') }}</th>
-            <th>{{ knp_pagination_sortable(jobs, 'Template', 'j.template_id') }}</th>
-            <th>{{ knp_pagination_sortable(jobs, 'Start Date', 'j.started_at') }}</th>
-            <th>{{ knp_pagination_sortable(jobs, 'End Date', 'j.ended_at') }}</th>
+            <th>Template</th>
+            <th>Contact list</th>
+            <th>{{ knp_pagination_sortable(jobs, 'Start Date', 'j.startedAt') }}</th>
+            <th>{{ knp_pagination_sortable(jobs, 'End Date', 'j.endedAt') }}</th>
         </tr>
 
         {# table body #}
@@ -21,8 +24,9 @@
                 <td>{{ entity.id }}</td>
                 <td>{{ entity.name }}</td>
                 <td><a href="{{ path('template_show', {'alias': entity.template.alias}) }}">{{ entity.template.Alias }}</a></td>
+                <td>{{ entity.contactList is empty ? '' : entity.contactList.title }}</td>
                 <td>{{ entity.startedAt.format('l, Y-M-d H:i:s') }}</td>
-                <td>{{ entity.endedAt }}</td>
+                <td>{{ entity.endedAt is empty ? '0000-00-00 00:00:00' : entity.endedAt|date('l, Y-M-d H:i:s') }}</td>
                 {#<td>#}
                     {#<ul>#}
                         {#<li>#}

@@ -1,0 +1,15 @@
+job_index_page:
+    path:     /{jobs_type}/{page}
+    defaults: { _controller: MailerBundle:Job:index,  jobs_type: actual, page: 1 }
+    requirements:
+        page: \d+
+        jobs_type: featured|actual|ended
+
+job_new_page:
+    path: /new
+    defaults: { _controller: "MailerBundle:Job:new" }
+
+job_crete_page:
+    path: /create
+    defaults: { _controller: "MailerBundle:Job:create" }
+    requirements: { _method: post }

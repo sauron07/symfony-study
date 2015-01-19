@@ -1,0 +1,15 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content -%}
+    <h1>Job creation</h1>
+
+    {{ form(form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('job_index_page') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}

@@ -2,9 +2,16 @@ mailer_template:
     resource: "@MailerBundle/Resources/config/routing/template.yml"
     prefix:   /template
 
-job_index_page:
-    path:     /jobs/{jobs_type}/{page}
-    defaults: { _controller: MailerBundle:Job:index,  jobs_type: actual, page: 1 }
+job_template:
+    resource: "@MailerBundle/Resources/config/routing/job.yml"
+    prefix: /jobs
+
+email_page_main:
+    path: /emails/{page}
+    defaults: { _controller: MailerBundle:Email:index, page: 1 }
     requirements:
         page: \d+
-        jobs_type: actual|ended
+
+contact_list_template:
+    resource: "@MailerBundle/Resources/config/routing/contact-list.yml"
+    prefix: /contact-list

@@ -22,6 +22,8 @@
         "snc/redis-bundle": "1.1.x-dev",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/data-fixtures" : "dev-master",
+        "doctrine/mongodb-odm": "1.0.*@dev",
+        "doctrine/mongodb-odm-bundle": "dev-master",
         "knplabs/knp-paginator-bundle": "~2.4"
     },
     "require-dev": {

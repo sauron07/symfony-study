@@ -32,13 +32,17 @@ class Job
     /**
      * @var boolean
      */
-    private $status;
+    private $status = 1;
 
     /**
      * @var \MailerBundle\Entity\Template
      */
     private $template;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $contact_list;
 
     /**
      * Get id
@@ -163,5 +167,28 @@ class Job
     public function getTemplate()
     {
         return $this->template;
+    }
+
+    /**
+     * Set contact_list
+     *
+     * @param \MailerBundle\Entity\ContactList $contactList
+     * @return Job
+     */
+    public function setContactList(\MailerBundle\Entity\ContactList $contactList = null)
+    {
+        $this->contact_list = $contactList;
+
+        return $this;
+    }
+
+    /**
+     * Get contact_list
+     *
+     * @return \MailerBundle\Entity\ContactList 
+     */
+    public function getContactList()
+    {
+        return $this->contact_list;
     }
 }

@@ -6,7 +6,10 @@
 <body>
 <div style="width: 900px; margin: 0 auto;">
     <div style="float: left">
+        <a href="{{ path('job_index_page') }}">Jobs</a>
         <a href="{{ path('template') }}">Templates</a>
+        <a href="{{ path('email_page_main') }}">Emails</a>
+        <a href="{{ path('contact_list_main_page') }}">Contacts list</a>
     </div>
     <div style="text-align: right">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

@@ -1,0 +1,27 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% block fos_user_content -%}
+    <h1>Emails list</h1>
+    <table border="1px">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>Id</th>
+            <th>Contact list</th>
+            <th>Email</th>
+        </tr>
+
+        {# table body #}
+        {% for entity in emails %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.contactList.title}}</td>
+                <td>{{ entity.email }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(emails) }}
+    </div>
+
+{% endblock %}

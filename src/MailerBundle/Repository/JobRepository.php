@@ -13,17 +13,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class JobRepository extends EntityRepository
 {
-    public function getJobs($ended = null)
+    public function getJobs($jobStatus = null)
     {
         $qb = $this->createQueryBuilder('j')
             ->where('j.status = :activeStatus')
             ->setParameter('activeStatus', 1);
 
-        if($ended){
-            $qb->andWhere('j.startedAt < :nowDate');
-        }else{
-            $qb->andWhere('j.startedAt > :nowDate');
+        switch($jobStatus){
+            case ('featured'):
+                $qb->andWhere('j.startedAt > :nowDate');
+                break;
+            case ('actual'):
+                $qb->andWhere('j.startedAt < :nowDate');
+                $qb->andWhere('j.endedAt is NULL');
+                break;
+            default:
+                $qb->andWhere('j.endedAt < :nowDate');
         }
+
         $qb->setParameter('nowDate', new DateTime());
 
         return $qb->getQuery();

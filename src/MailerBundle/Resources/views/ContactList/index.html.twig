@@ -1,0 +1,27 @@
+{% extends "@FOSUser/layout.html.twig" %}
+{% block right_sidebar %}
+    <a href="{{ path('contact_list_new_page') }}">Create contact list</a>
+{% endblock %}
+
+{% block fos_user_content -%}
+    <h1>Contacts list</h1>
+    <table border="1px">
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+        </tr>
+
+        {% for entity in contact_list %}
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.title}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(contact_list) }}
+    </div>
+
+{% endblock %}

@@ -64,6 +64,17 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
+doctrine_mongodb:
+    connections:
+        default:
+            server: mongodb://localhost:27017
+            options: {}
+    default_database: blog
+    document_managers:
+        default:
+            auto_mapping: true
+
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"
@@ -100,4 +111,4 @@ knp_paginator:
 
 # TODO перенести настройки в базу
 parameters:
-    max_templates_on_page: 10
+    max_templates_on_page: 20

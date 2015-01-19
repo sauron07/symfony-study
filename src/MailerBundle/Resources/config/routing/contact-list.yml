@@ -1,0 +1,14 @@
+contact_list_main_page:
+    path: /{page}
+    defaults: { _controller: MailerBundle:ContactList:index, page: 1 }
+    requirements:
+        page: \d+
+
+contact_list_new_page:
+    path: /new
+    defaults: { _controller: "MailerBundle:ContactList:new" }
+
+contact_list_create_page:
+    path: /create
+    defaults: { _controller: "MailerBundle:ContactList:create" }
+    requirements: { _method: POST }

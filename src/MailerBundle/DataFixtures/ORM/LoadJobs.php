@@ -3,6 +3,7 @@
 namespace MailerBundle\DataFixtures\ORM;
 
 
+use DateTime;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -19,22 +20,31 @@ class LoadJobs extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load (ObjectManager $manager)
     {
+        /** @var \MailerBundle\Entity\Template $activationTemplate */
         $activationTemplate = $manager->getRepository('MailerBundle:Template')->findOneBy(['alias' => 'activation']);
 
-        $activationJob = new Job();
-        $activationJob->setName('activation')
-            ->setStartedAt(new \DateTime('2015-01-15 10:00:00'))
+        $featureJob = new Job();
+        $featureJob->setName('activation')
+            ->setStartedAt(new DateTime('2015-01-15 10:00:00'))
+            ->setStatus(1)
+            ->setTemplate($activationTemplate);
+
+        $activeJob = new Job();
+        $activeJob->setName('activation')
+            ->setStartedAt(new DateTime('2015-01-10 10:00:00'))
             ->setStatus(1)
             ->setTemplate($activationTemplate);
 
         $endedJob = new Job();
         $endedJob->setName('activation')
-            ->setStartedAt(new \DateTime('2015-01-10 10:00:00'))
+            ->setStartedAt(new DateTime('2015-01-10 10:00:00'))
+            ->setEndedAt(new DateTime('2015-01-12 10:00:00'))
             ->setStatus(1)
             ->setTemplate($activationTemplate);
 
+        $manager->persist($activeJob);
+        $manager->persist($featureJob);
         $manager->persist($endedJob);
-        $manager->persist($activationJob);
         $manager->flush();
     }
 
@@ -45,6 +55,6 @@ class LoadJobs extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder ()
     {
-        return 3;
+        return 5;
     }
 }

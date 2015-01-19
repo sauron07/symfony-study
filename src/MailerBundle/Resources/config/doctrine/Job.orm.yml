@@ -21,10 +21,15 @@ MailerBundle\Entity\Job:
             nullable: true
         status:
             type: boolean
-    oneToOne:
+    manyToOne:
         template:
             targetEntity: MailerBundle\Entity\Template
-            joinColumn:
+            joinColunm:
                 name: template_id
+                referencedColumnName: id
+        contact_list:
+            targetEntity: MailerBundle\Entity\ContactList
+            joinColumn:
+                name: contact_list_id
                 referencedColumnName: id
     lifecycleCallbacks: {  }
